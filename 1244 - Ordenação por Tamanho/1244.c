@@ -5,12 +5,6 @@
 
 #define MAX_INPUT_SIZE 1024
 
-typedef struct Palavra
-{
-    char* texto;
-    int tamanho;
-} palavra;
-
 int main(int argc, char const *argv[])
 {
     int testes;
@@ -18,7 +12,7 @@ int main(int argc, char const *argv[])
 
     while (testes > 0)
     {
-        palavra listaPalavras[50];
+        char* listaPalavras[50];
 
         char entrada[MAX_INPUT_SIZE]; //string + \0
         scanf("%[^\n]s%*c", entrada);
@@ -43,9 +37,8 @@ int main(int argc, char const *argv[])
 
                 // adiciona \0 no buffer, reinicia o cursorBuffer e adiciona a palavra na lista.
                 buffer[cursorBuffer] = '\0';
-                listaPalavras[palavras - 1].texto = malloc(strlen(buffer) + 1);
-                strcpy(listaPalavras[palavras - 1].texto, buffer);
-                listaPalavras[palavras - 1].tamanho = strlen(buffer);
+                listaPalavras[palavras - 1] = malloc(strlen(buffer) + 1);
+                strcpy(listaPalavras[palavras - 1], buffer);
 
                 cursorBuffer = 0;
                 
@@ -66,9 +59,8 @@ int main(int argc, char const *argv[])
 
             // adiciona \0 no buffer, reinicia o cursorBuffer e adiciona a palavra na lista.
             buffer[cursorBuffer] = '\0';
-            listaPalavras[palavras - 1].texto = malloc(strlen(buffer) + 1);
-            strcpy(listaPalavras[palavras - 1].texto, buffer);
-            listaPalavras[palavras - 1].tamanho = cursorBuffer;
+            listaPalavras[palavras - 1] = malloc(strlen(buffer) + 1);
+            strcpy(listaPalavras[palavras - 1], buffer);
 
             cursorBuffer = 0;
         }
