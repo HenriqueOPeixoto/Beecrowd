@@ -15,6 +15,30 @@ void limpaMemoria(char** lista, int tamanho)
     }
 }
 
+void ordenaPalavras(char** lista, int tamanho)
+{
+    int tamanhoMaiorPalavra = 0, indiceMaiorPalavra = 0;
+    for (int j = 0; j < tamanho; j++)
+    {
+        for (int i = 0; i < tamanho; i++)
+        {   
+            if (strlen(lista[i]) > tamanhoMaiorPalavra)
+            {
+                tamanhoMaiorPalavra = strlen(lista[i]);
+                indiceMaiorPalavra = i;
+            }
+        }
+
+        char aux[MAX_WORD_SIZE];
+        strcpy(aux, lista[j]);
+        strcpy(lista[j], lista[indiceMaiorPalavra]);
+        strcpy(lista[indiceMaiorPalavra], aux);
+
+    }
+
+}
+
+
 int main(int argc, char const *argv[])
 {
     int testes;
@@ -66,6 +90,8 @@ int main(int argc, char const *argv[])
         }
 
         printf("A quantidade de palavras encontradas é %d\n", palavras);
+
+        ordenaPalavras(listaPalavras, palavras);
 
         limpaMemoria(listaPalavras, palavras);
 
