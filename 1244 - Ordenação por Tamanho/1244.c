@@ -45,7 +45,6 @@ int main(int argc, char const *argv[])
             {
                 isPalavra = false;
 
-                // adiciona \0 no buffer, reinicia o cursorBuffer e adiciona a palavra na lista.
                 buffer[cursorBuffer] = '\0';
                 listaPalavras[palavras - 1] = malloc(strlen(buffer) + 1);
                 strcpy(listaPalavras[palavras - 1], buffer);
