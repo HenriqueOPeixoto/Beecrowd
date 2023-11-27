@@ -15,7 +15,7 @@ void limpaMemoria(char** lista, int tamanho)
     }
 }
 
-void ordenaPalavras(char** lista, int tamanho)
+void ordenaPalavrasSelectionSort(char** lista, int tamanho)
 {
     for (int j = 0; j < tamanho; j++)
     {
@@ -38,6 +38,28 @@ void ordenaPalavras(char** lista, int tamanho)
 
     }
 
+}
+
+void ordenaPalavrasBubbleSort(char** lista, int tamanho)
+{
+    bool trocou = false;
+
+    do
+    {
+        trocou = false;
+        char aux[MAX_WORD_SIZE];
+        for (int i = 0; i < tamanho - 1; i++)
+        {
+            if (strlen(lista[i]) < strlen(lista[i + 1]))
+            {
+                strcpy(aux, lista[i]);
+                strcpy(lista[i], lista[i + 1]);
+                strcpy(lista[i + 1], aux);
+                trocou = true;
+            }
+        }
+    } while (trocou);
+    
 }
 
 void imprimeLista(char** lista, int tamanho)
@@ -107,7 +129,7 @@ int main(int argc, char const *argv[])
             
         }
 
-        ordenaPalavras(listaPalavras, palavras);
+        ordenaPalavrasBubbleSort(listaPalavras, palavras);
 
         imprimeLista(listaPalavras, palavras);
 
