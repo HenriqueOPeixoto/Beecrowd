@@ -63,7 +63,7 @@ int main(int argc, char const *argv[])
         char* listaPalavras[MAX_LIST_SIZE];
 
         char entrada[MAX_INPUT_SIZE];
-        scanf("%[^\n]s%*c", entrada);
+        scanf("%[^\n]%*c", entrada);
 
         char buffer[MAX_WORD_SIZE]; // Para armazenar temporariamente a palavra
         int cursorEntrada = 0, cursorBuffer = 0, palavras = 0;
@@ -84,8 +84,12 @@ int main(int argc, char const *argv[])
                 isPalavra = false;
 
                 buffer[cursorBuffer] = '\0';
-                listaPalavras[palavras - 1] = malloc(strlen(buffer) + 1);
+                // A linha abaixo estava como malloc(strlen(buffer) + 1).
+                // Por algum motivo estava dando SEGFAULT.
+                listaPalavras[palavras - 1] = malloc(sizeof(buffer)); 
+                if (listaPalavras[palavras - 1] == NULL) exit(EXIT_FAILURE); // alocação falhou
                 strcpy(listaPalavras[palavras - 1], buffer);
+                
 
                 cursorBuffer = 0;
                 
